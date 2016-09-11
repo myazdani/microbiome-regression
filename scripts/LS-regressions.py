@@ -46,12 +46,12 @@ biomarkers = ["Stool.Lysozyme",
 
 # In[5]:
 
-scoring_metric = "mean_absolute_error"
+scoring_metric = "r2"
 
 
 def CV_scores(regressor, X, y, data_type, estimator_name):
     y_n = (y - np.mean(y))/np.std(y)
-    scores = -1*cross_validation.cross_val_score(regressor, X, y, cv=10, scoring = scoring_metric)
+    scores = cross_validation.cross_val_score(regressor, X, y, cv=5, scoring = scoring_metric)
     results = {'data': data_type, "model": estimator_name, "Mean score": np.mean(scores), "STD score": np.std(scores)}
     return results
 
@@ -112,6 +112,6 @@ for biomarker in biomarkers:
         summary_stats.append(CV_scores(metric_KNN, X, y, data_type = file_path, estimator_name = "Metric KNN"))
     
     results_df = pd.DataFrame(summary_stats)
-    results_df.to_csv("../results/LS/10-folds/" + biomarker + ".csv", index = False)
+    results_df.to_csv("../results/LS/r2/5-fold/" + biomarker + ".csv", index = False)
 
 
