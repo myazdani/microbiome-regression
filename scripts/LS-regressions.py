@@ -46,12 +46,12 @@ biomarkers = ["Stool.Lysozyme",
 
 # In[5]:
 
-scoring_metric = "r2"
+scoring_metric = "mean_absolute_error"
 
 
 def CV_scores(regressor, X, y, data_type, estimator_name):
     y_n = (y - np.mean(y))/np.std(y)
-    scores = cross_validation.cross_val_score(regressor, X, y, cv=5, scoring = scoring_metric)
+    scores = cross_validation.cross_val_score(regressor, X, y, cv=10, scoring = scoring_metric)
     results = {'data': data_type, "model": estimator_name, "Mean score": np.mean(scores), "STD score": np.std(scores)}
     return results
 
@@ -75,32 +75,32 @@ for biomarker in biomarkers:
         #
         # Elastic Net
         #
-        ENet = ElasticNetCV(l1_ratio=[.1, .5, .7, .9, .95, .99, 1], eps=0.001, n_alphas=100, normalize=False, 
-                            max_iter=1000, tol=0.0001, cv=3, copy_X=True, n_jobs=-1)
-        summary_stats.append(CV_scores(ENet,X, y, data_type = file_path, estimator_name = "Elastic Net"))
+        #ENet = ElasticNetCV(l1_ratio=[.1, .5, .7, .9, .95, .99, 1], eps=0.001, n_alphas=100, normalize=False, 
+        #                    max_iter=1000, tol=0.0001, cv=3, copy_X=True, n_jobs=-1)
+        #summary_stats.append(CV_scores(ENet,X, y, data_type = file_path, estimator_name = "Elastic Net"))
         #
         # Linear SVM
         # 
-        linear_SVM = GridSearchCV(estimator=SVR(kernel='linear'), param_grid=dict(C=np.logspace(-2,10,20)), n_jobs = -1, 
-                                  scoring = scoring_metric)
-        summary_stats.append(CV_scores(linear_SVM,X, y, data_type = file_path, estimator_name = "Linear SVM"))
+        #linear_SVM = GridSearchCV(estimator=SVR(kernel='linear'), param_grid=dict(C=np.logspace(-2,10,20)), n_jobs = -1, 
+        #                          scoring = scoring_metric)
+        #summary_stats.append(CV_scores(linear_SVM,X, y, data_type = file_path, estimator_name = "Linear SVM"))
         #
         # RBF SVM
         # 
-        RBF_SVM = GridSearchCV(estimator=SVR(kernel='rbf'), param_grid=dict(C=np.logspace(-2,10,20),gamma = np.logspace(-9, 3, 20)), n_jobs = -1, 
-                               scoring = scoring_metric)
-        summary_stats.append(CV_scores(RBF_SVM,X, y, data_type = file_path, estimator_name = "RBF SVM"))
+        #RBF_SVM = GridSearchCV(estimator=SVR(kernel='rbf'), param_grid=dict(C=np.logspace(-2,10,20),gamma = np.logspace(-9, 3, 20)), n_jobs = -1, 
+        #                       scoring = scoring_metric)
+        #summary_stats.append(CV_scores(RBF_SVM,X, y, data_type = file_path, estimator_name = "RBF SVM"))
         #    
         # RF
         #
-        RF = RandomForestRegressor(n_estimators=1000, n_jobs=-1)
-        summary_stats.append(CV_scores(RF,X, y, data_type = file_path, estimator_name = "RF"))
+        #RF = RandomForestRegressor(n_estimators=1000, n_jobs=-1)
+        #summary_stats.append(CV_scores(RF,X, y, data_type = file_path, estimator_name = "RF"))
         #
         # KNN 
         #
-        KNN = GridSearchCV(estimator=KNeighborsRegressor(), param_grid=dict(n_neighbors=range(1,11), p=[1,2]), n_jobs = -1, 
-                           scoring = scoring_metric)        
-        summary_stats.append(CV_scores(KNN,X, y, data_type = file_path, estimator_name = "KNN"))
+        #KNN = GridSearchCV(estimator=KNeighborsRegressor(), param_grid=dict(n_neighbors=range(1,11), p=[1,2]), n_jobs = -1, 
+        #                   scoring = scoring_metric)        
+        #summary_stats.append(CV_scores(KNN,X, y, data_type = file_path, estimator_name = "KNN"))
         
         #
         # Metric KNN 
@@ -110,9 +110,11 @@ for biomarker in biomarkers:
                            scoring = scoring_metric)        
         metric_KNN = Pipeline([('metric', FW), ('knn', KNN)])
         try:
-          summary_stats.append(CV_scores(metric_KNN, X, y, data_type = file_path, estimator_name = "Metric KNN"))
+          summary_stats.append(CV_scores(metric_KNN, X, y, data_type = file_path, estimator_name = "Metric KNN default"))
+        except:
+          pass
     
     results_df = pd.DataFrame(summary_stats)
-    results_df.to_csv("../results/LS/r2/5-fold/" + biomarker + ".csv", index = False)
+    results_df.to_csv("../results/LS/metric_default_" + biomarker + ".csv", index = False)
 
 
