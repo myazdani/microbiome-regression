@@ -21,7 +21,8 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
     FW.fit(X, y)
     X_weighted = FW.transform(X)
     '''
-    def __init__(self,round_weights = True, normalize_condition_number = True):
+    def __init__(self,round_weights = True, normalize_condition_number = True, cvx_solver = cvx.CVXOPT):
+        self.cvx_solver = cvx_solver
         self.round_weights = round_weights
         self.normalize_condition_number = normalize_condition_number
 
@@ -51,7 +52,8 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
         constraints = [0 <= w]
 
         prob = cvx.Problem(objective, constraints)
-        prob.solve(solver=cvx.SCS)
+        #prob.solve(solver=cvx.SCS)
+        prob.solve(self.cvx_solver)
         return prob.status, w.value
 
     def fit(self, X=None, y=None):

@@ -109,7 +109,8 @@ for biomarker in biomarkers:
         KNN = GridSearchCV(estimator=KNeighborsRegressor(), param_grid=dict(n_neighbors=range(1,11), p=[1,2]), n_jobs = -1, 
                            scoring = scoring_metric)        
         metric_KNN = Pipeline([('metric', FW), ('knn', KNN)])
-        summary_stats.append(CV_scores(metric_KNN, X, y, data_type = file_path, estimator_name = "Metric KNN"))
+        try:
+          summary_stats.append(CV_scores(metric_KNN, X, y, data_type = file_path, estimator_name = "Metric KNN"))
     
     results_df = pd.DataFrame(summary_stats)
     results_df.to_csv("../results/LS/10-folds/" + biomarker + ".csv", index = False)
