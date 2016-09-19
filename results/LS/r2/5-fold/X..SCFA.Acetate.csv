@@ -1,0 +1,31 @@
+Mean score,STD score,data,model
+-5.19503698083,7.10177260436,../data/LS/LS-L5-biomarkers.csv,Elastic Net
+-1.71940467909,0.883072932916,../data/LS/LS-L5-biomarkers.csv,Linear SVM
+-1.80469858983,0.977583857734,../data/LS/LS-L5-biomarkers.csv,RBF SVM
+-1.70640506202,1.2345702714,../data/LS/LS-L5-biomarkers.csv,RF
+-2.35958212229,1.79804164047,../data/LS/LS-L5-biomarkers.csv,KNN
+-1.07392042945,1.38764970357,../data/LS/LS-L5-biomarkers.csv,Metric KNN
+-1.51891391903,1.5419694631,../data/LS/LS-L2-biomarkers.csv,Elastic Net
+-1.85529825998,1.38664146657,../data/LS/LS-L2-biomarkers.csv,Linear SVM
+-1.65562281735,1.21973667672,../data/LS/LS-L2-biomarkers.csv,RBF SVM
+-1.11543361272,0.763570277043,../data/LS/LS-L2-biomarkers.csv,RF
+-1.85953153856,1.44309435734,../data/LS/LS-L2-biomarkers.csv,KNN
+-1.48160287714,1.33953588392,../data/LS/LS-L2-biomarkers.csv,Metric KNN
+-1.1890564612,1.19786879146,../data/LS/LS-L6-biomarkers.csv,Elastic Net
+-2.15503251028,1.15869359306,../data/LS/LS-L6-biomarkers.csv,Linear SVM
+-3.07985961436,2.32670702235,../data/LS/LS-L6-biomarkers.csv,RBF SVM
+-1.92955415632,1.19117482399,../data/LS/LS-L6-biomarkers.csv,RF
+-1.96844622634,1.50786283984,../data/LS/LS-L6-biomarkers.csv,KNN
+-0.864705326109,1.31547217721,../data/LS/LS-L6-biomarkers.csv,Metric KNN
+-4.38648401456,5.63351900989,../data/LS/LS-L4-biomarkers.csv,Elastic Net
+-2.04057765219,1.24447886511,../data/LS/LS-L4-biomarkers.csv,Linear SVM
+-1.57982110902,1.22493389368,../data/LS/LS-L4-biomarkers.csv,RBF SVM
+-1.17197077122,1.12074888183,../data/LS/LS-L4-biomarkers.csv,RF
+-1.74289321848,1.21210206958,../data/LS/LS-L4-biomarkers.csv,KNN
+-1.16490721833,1.42791933646,../data/LS/LS-L4-biomarkers.csv,Metric KNN
+-4.33381934878,5.53079932619,../data/LS/LS-L3-biomarkers.csv,Elastic Net
+-1.95545707432,1.38315176333,../data/LS/LS-L3-biomarkers.csv,Linear SVM
+-1.59382506278,1.21748295719,../data/LS/LS-L3-biomarkers.csv,RBF SVM
+-1.03200883843,0.978292484316,../data/LS/LS-L3-biomarkers.csv,RF
+-1.68589576301,1.22174646715,../data/LS/LS-L3-biomarkers.csv,KNN
+-1.19909877694,1.37124108066,../data/LS/LS-L3-biomarkers.csv,Metric KNN
