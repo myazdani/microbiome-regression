@@ -21,7 +21,8 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
     FW.fit(X, y)
     X_weighted = FW.transform(X)
     '''
-    def __init__(self,round_weights = True, normalize_condition_number = True, cvx_solver = cvx.CVXOPT):
+    def __init__(self,round_weights = True, normalize_condition_number = True, cvx_solver = cvx.CVXOPT, obj_norm = 2):
+        self.obj_norm = obj_norm
         self.cvx_solver = cvx_solver
         self.round_weights = round_weights
         self.normalize_condition_number = normalize_condition_number
@@ -47,14 +48,16 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
         A = X_diffs/sc
         b = y_diffs/sc
         w = cvx.Variable(X_diffs.shape[1])
-        #objective = cvx.Minimize(cvx.sum_entries(cvx.huber(A*w - b,1000)))
-        objective = cvx.Minimize(cvx.norm(A*w - b,2))
-        constraints = [0 <= w]
+        objective = cvx.Minimize(cvx.norm(A*w - b, self.obj_norm))
+        constraints = [0 <= w, w <= 1]
 
         prob = cvx.Problem(objective, constraints)
-        #prob.solve(solver=cvx.SCS)
-        prob.solve(self.cvx_solver)
-        return prob.status, w.value
+        prob.solve(solver = self.cvx_solver)
+
+        self.prob_status = prob.status
+        self.w_value = w.value
+
+        return self.prob_status, self.w_value
 
     def fit(self, X=None, y=None):
         X_diffs = self.pairwise_diffs(X)
@@ -69,6 +72,7 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
         found_weights = np.asarray(self.weights).squeeze()
         non_zero_weights = found_weights[found_weights!=0]
         X_rel = X[:,found_weights!=0]*non_zero_weights
+        #X_rel = X[:,found_weights!=0]
 
         return X_rel
 
