@@ -1,0 +1,31 @@
+Mean score,STD score,data,model
+72.6103778247,67.9574856909,../data/LS/LS-L5-biomarkers.csv,Elastic Net
+71.6597986243,73.8621232274,../data/LS/LS-L5-biomarkers.csv,Linear SVM
+73.9976832945,47.9944943265,../data/LS/LS-L5-biomarkers.csv,RBF SVM
+74.6101844828,66.4175284403,../data/LS/LS-L5-biomarkers.csv,RF
+70.3194444444,77.34760195,../data/LS/LS-L5-biomarkers.csv,KNN
+79.6341954023,79.4585899147,../data/LS/LS-L5-biomarkers.csv,Metric KNN
+72.648144312,67.9469552658,../data/LS/LS-L2-biomarkers.csv,Elastic Net
+69.7370063091,76.1253141422,../data/LS/LS-L2-biomarkers.csv,Linear SVM
+77.6363222598,63.8459986252,../data/LS/LS-L2-biomarkers.csv,RBF SVM
+74.5252034483,67.5411534104,../data/LS/LS-L2-biomarkers.csv,RF
+81.4222413793,66.8006024336,../data/LS/LS-L2-biomarkers.csv,KNN
+77.7325191571,68.6966293397,../data/LS/LS-L2-biomarkers.csv,Metric KNN
+72.8921511856,67.9310214662,../data/LS/LS-L6-biomarkers.csv,Elastic Net
+69.6526000181,74.0372085411,../data/LS/LS-L6-biomarkers.csv,Linear SVM
+78.7886984673,69.2518686319,../data/LS/LS-L6-biomarkers.csv,RBF SVM
+69.4495482759,71.5029411918,../data/LS/LS-L6-biomarkers.csv,RF
+75.4071018062,71.8023892408,../data/LS/LS-L6-biomarkers.csv,KNN
+80.9137931034,79.7535357038,../data/LS/LS-L6-biomarkers.csv,Metric KNN
+72.6060123382,67.9428255151,../data/LS/LS-L4-biomarkers.csv,Elastic Net
+76.0757520672,76.1281621716,../data/LS/LS-L4-biomarkers.csv,Linear SVM
+82.3315623121,54.5348678134,../data/LS/LS-L4-biomarkers.csv,RBF SVM
+73.7390137931,69.3484192783,../data/LS/LS-L4-biomarkers.csv,RF
+72.9977011494,70.2270279813,../data/LS/LS-L4-biomarkers.csv,KNN
+80.2023275862,76.5265994842,../data/LS/LS-L4-biomarkers.csv,Metric KNN
+72.6059923893,67.9428237329,../data/LS/LS-L3-biomarkers.csv,Elastic Net
+75.4834898733,76.499241024,../data/LS/LS-L3-biomarkers.csv,Linear SVM
+80.7181107514,56.8975504133,../data/LS/LS-L3-biomarkers.csv,RBF SVM
+73.4869275862,73.5497035651,../data/LS/LS-L3-biomarkers.csv,RF
+76.5559770115,68.891601451,../data/LS/LS-L3-biomarkers.csv,KNN
+77.7796921182,73.0411662525,../data/LS/LS-L3-biomarkers.csv,Metric KNN

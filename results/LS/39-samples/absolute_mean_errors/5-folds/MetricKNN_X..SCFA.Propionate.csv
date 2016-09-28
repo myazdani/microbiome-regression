@@ -1,0 +1,6 @@
+Mean score,STD score,data,model
+3.72,0.808006421025,../data/LS/LS-L2-biomarkers.csv,Metric KNN
+4.35535714286,1.03632234477,../data/LS/LS-L3-biomarkers.csv,Metric KNN
+4.62,1.24174060411,../data/LS/LS-L4-biomarkers.csv,Metric KNN
+4.02619047619,0.716203773939,../data/LS/LS-L5-biomarkers.csv,Metric KNN
+3.82119047619,1.07750404453,../data/LS/LS-L6-biomarkers.csv,Metric KNN

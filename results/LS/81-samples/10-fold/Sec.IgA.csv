@@ -1,0 +1,21 @@
+Mean score,STD score,data,model
+227.951200561,98.6339615705,../data/LS/81-samples/LS-L2-biomarkers.csv,Elastic Net
+194.7107095,88.6139335692,../data/LS/81-samples/LS-L2-biomarkers.csv,RF
+203.134424405,103.844857559,../data/LS/81-samples/LS-L2-biomarkers.csv,KNN
+176.626792262,113.051545731,../data/LS/81-samples/LS-L2-biomarkers.csv,Metric KNN
+227.451928353,100.363342028,../data/LS/81-samples/LS-L3-biomarkers.csv,Elastic Net
+220.061529,92.9969952564,../data/LS/81-samples/LS-L3-biomarkers.csv,RF
+213.711604167,96.1245222107,../data/LS/81-samples/LS-L3-biomarkers.csv,KNN
+184.07422381,100.893694481,../data/LS/81-samples/LS-L3-biomarkers.csv,Metric KNN
+227.435615649,100.368978505,../data/LS/81-samples/LS-L4-biomarkers.csv,Elastic Net
+219.2435305,89.3262824968,../data/LS/81-samples/LS-L4-biomarkers.csv,RF
+229.817694444,88.5212201091,../data/LS/81-samples/LS-L4-biomarkers.csv,KNN
+202.856677778,108.762226511,../data/LS/81-samples/LS-L4-biomarkers.csv,Metric KNN
+224.438902376,98.0763659243,../data/LS/81-samples/LS-L5-biomarkers.csv,Elastic Net
+216.449841,91.4114998214,../data/LS/81-samples/LS-L5-biomarkers.csv,RF
+195.370900794,102.277084314,../data/LS/81-samples/LS-L5-biomarkers.csv,KNN
+194.377339286,101.169703778,../data/LS/81-samples/LS-L5-biomarkers.csv,Metric KNN
+265.508722934,178.088242412,../data/LS/81-samples/LS-L6-biomarkers.csv,Elastic Net
+202.589145,87.3370861101,../data/LS/81-samples/LS-L6-biomarkers.csv,RF
+174.41656131,93.1304988568,../data/LS/81-samples/LS-L6-biomarkers.csv,KNN
+190.832678571,97.3283858867,../data/LS/81-samples/LS-L6-biomarkers.csv,Metric KNN
