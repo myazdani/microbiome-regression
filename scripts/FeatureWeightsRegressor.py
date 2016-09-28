@@ -6,12 +6,11 @@ import pandas as pd
 import os
 import cvxpy as cvx
 
-class FeatureWeights(BaseEstimator, TransformerMixin):
+class FeatureWeightsRegressor(BaseEstimator, TransformerMixin):
     '''Compute feature weights based on pairwise differences and a target
 
     Parameters
     ----------
-    caffe_root: path destination of where caffe is located
     Attributes
     ----------
     layer_names: list
@@ -61,7 +60,8 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
         else:
             constraints = [0 <= w]
 
-        prob = cvx.Problem(objective, constraints)
+        #prob = cvx.Problem(objective, constraints)
+        prob = cvx.Problem(objective)
         prob.solve(solver = self.cvx_solver)
 
         self.prob_status = prob.status
@@ -94,13 +94,16 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
 
 
 
-    def fit(self, X=None, y=None):
-        X_diffs = self.pairwise_diffs(X)
-        y_diffs = self.pairwise_diffs(y[np.newaxis].T)
+    def fit(self, X_train=None, y_train=None):
+        self.X_train = X_train
+        self.y_train = y_train
+        X_diffs = self.pairwise_diffs(self.X_train)
+        y_diffs = self.pairwise_diffs(self.y_train[np.newaxis].T)
         if self.bagged_estimate == True:
             self.statusprob, self.weights = self.ensemble_weights(X_diffs, y_diffs)
         else:
             self.statusprob, self.weights = self.optimize_weights(X_diffs, y_diffs)
+        print self.weights.shape
         if self.round_weights:
           self.weights = np.round(self.weights)
         return self
@@ -113,6 +116,18 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
         #X_rel = X[:,found_weights!=0]
 
         return X_rel
+
+    def single_array_diff(self, x, X_train, y_train):
+        diffs = self.weights.T*np.sqrt((x - X_train)**2).T
+        y = np.mean(y_train + diffs)
+        return y
+
+
+    def predict(self, X):
+        y_preds = []
+        for i in range(X.shape[0]):
+            y_preds.append(self.single_array_diff(X[i,], self.X_train, self.y_train))
+        return np.array(y_preds)
 
 
 if __name__ == "__main__":

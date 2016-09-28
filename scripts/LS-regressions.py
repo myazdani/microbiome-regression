@@ -51,7 +51,7 @@ scoring_metric = "mean_absolute_error"
 
 def CV_scores(regressor, X, y, data_type, estimator_name):
     y_n = (y - np.mean(y))/np.std(y)
-    scores = cross_validation.cross_val_score(regressor, X, y, cv=10, scoring = scoring_metric)
+    scores = -1*cross_validation.cross_val_score(regressor, X, y, cv=10, scoring = scoring_metric)
     results = {'data': data_type, "model": estimator_name, "Mean score": np.mean(scores), "STD score": np.std(scores)}
     return results
 
@@ -112,6 +112,7 @@ for biomarker in biomarkers:
         try:
           summary_stats.append(CV_scores(metric_KNN, X, y, data_type = file_path, estimator_name = "Metric KNN default"))
         except:
+          print file_path, "fail"
           pass
     
     results_df = pd.DataFrame(summary_stats)
