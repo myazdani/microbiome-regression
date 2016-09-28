@@ -11,7 +11,6 @@ from sklearn.cross_validation import KFold
 import numpy as np
 from scipy.stats import hmean
 from sklearn import metrics
-from FeatureWeights import FeatureWeights
 from sklearn.pipeline import Pipeline
 import os
 
