@@ -23,11 +23,13 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
     X_weighted = FW.transform(X)
     '''
     def __init__(self,round_weights = True, normalize_condition_number = True, cvx_solver = cvx.CVXOPT, 
-        obj_norm = 2, upper_bound = True, bagged_estimate = False, niter = 10, num_samples = 100):
+        obj_norm = 2, upper_bound = True, bagged_estimate = False, niter = 10, num_samples = 100, 
+        sparsify_weights = True):
         self.obj_norm = obj_norm
         self.upper_bound = upper_bound
         self.cvx_solver = cvx_solver
         self.round_weights = round_weights
+        self.sparsify_weights = sparsify_weights
         self.normalize_condition_number = normalize_condition_number
         self.bagged_estimate = bagged_estimate
         self.niter = niter
@@ -62,7 +64,7 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
             constraints = [0 <= w]
 
         prob = cvx.Problem(objective, constraints)
-        prob.solve(solver = self.cvx_solver)
+        prob.solve(solver=self.cvx_solver, warm_start=False, use_indirect=True)
 
         self.prob_status = prob.status
         self.w_value = w.value
@@ -108,8 +110,11 @@ class FeatureWeights(BaseEstimator, TransformerMixin):
 
     def transform(self, X):
         found_weights = np.asarray(self.weights).squeeze()
-        non_zero_weights = found_weights[found_weights!=0]
-        X_rel = X[:,found_weights!=0]*non_zero_weights
+        if self.sparsify_weights:
+            non_zero_weights = found_weights[found_weights!=0]
+            X_rel = X[:,found_weights!=0]*non_zero_weights
+        else:
+            X_rel = X*found_weights
         #X_rel = X[:,found_weights!=0]
 
         return X_rel
